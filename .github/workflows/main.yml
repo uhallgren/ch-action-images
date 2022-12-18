@@ -31,9 +31,9 @@ jobs:
     - name: Build SDK 
       uses: ./.github/actions/sagemcom/f5370e/build-sdk
       with:
-        version: 'SG4T1E100008S'
-        sdk_tar: 'sdk'
-        compiled_sdk_tar: 'compiled_sdk'
+        sdk_version: SG4T1E100008S
+        sdk_tar: sdk
+        compiled_sdk_tar: compiled_sdk
 
 
 
