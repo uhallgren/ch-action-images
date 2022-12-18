@@ -3,11 +3,13 @@ author: 'Ulf Hallgren <ulf.hallgren@teliacompany.com>'
 description: 'Builds Sagemcom SDK'
 inputs:
   user:
-    version: 'SDK Version'
+    sdk_version: 'SDK Version'
     required: true
+
   sdk_tar:
     description: 'The folder where the SDK tar file is stored.'
     required: true
+
   compiled_sdk_tar:
     description: 'The folder where the compiled SDK is stored.'
     default: 'compiled_sdk'
