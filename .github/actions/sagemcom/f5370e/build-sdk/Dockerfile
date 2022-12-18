@@ -56,3 +56,7 @@ RUN useradd -m developer
 COPY locale /etc/default/locale
 RUN locale-gen en_US.UTF-8 \
     && DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
+
+COPY entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]

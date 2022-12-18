@@ -5,24 +5,29 @@ on:
     branches: main
 
 jobs:
+
   build_sagem_image:
     name: Builds sagem docker image
+    
     runs-on: ubuntu-latest
     steps:
     - name: Checkout out the repo
       uses: actions/checkout@v3
 
     - name: Fetch SDK 
-      uses: ./.github/actions/ftp_get
+      uses: ./.github/actions/ftp-get
       with:
         user: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
         local: "sdk"
         remote: "Telia_Internal/sagemcom/sdk/SDK_F5370E_2022"
         
-    - name: Create docker image build-sdk
-      run: |
-        cd docker/sagemcom/f5370e/build-sdk
-        docker build . --tag build-sdk
+    - name: Build SDK 
+      uses: ./.github/actions/sagemcom/f5370e/build-sdk
+      with:
+        version: SG4T1E100008S
+        sdk_tar: sdk
+        compiled_sdk_tar: compiled_sdk
+
 
 
