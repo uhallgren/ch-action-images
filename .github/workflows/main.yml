@@ -17,6 +17,6 @@ jobs:
       with:
         user: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local: "sdk"
+        local: "./sdk"
         remote: "Telia_Internal/sagemcom/sdk/SDK_F5370E_2022"
         
