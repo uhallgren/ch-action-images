@@ -13,7 +13,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Fetch SDK 
-      uses: .github/actions/ftp_get
+      uses: ./.github/actions/ftp_get
       with:
         user: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PASSWORD }}

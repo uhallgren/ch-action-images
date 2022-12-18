@@ -1,6 +1,6 @@
-# ftp-action
+# ftp-get
 
-Automate copying your files via ftp using this GitHub action.
+Fetching files from ftpstanis
 
 ## Example usage
 
@@ -13,25 +13,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Upload ftp
-      uses: sebastianpopp/ftp-action@releases/v2
+    - name: get foo
+      uses: ./github/actions/ftp_get
       with:
-        host: ${{ secrets.FTP_SERVER }}
         user: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        localDir: "dist"
-        remoteDir: "www"
-        options: "--delete --asci"
+        localDir: "foo"
+        remoteDir: "foo.bar"
 ```
 
 ## Input parameters
 
 Input parameter | Description | Required | Default
 --- | --- | --- | ---
-host | FTP server name | Yes | N/A
 user | FTP username | Yes | N/A
 password | FTP password | Yes | N/A
-localDir | The local directory to copy | No | .
-remoteDir | The remote directory to copy to | No | .
-forceSsl | Force SSL encryption | No | false
-options | Mirror command options | No | ''
+local | The local directory to copy | No | .
+remote | The remote directory to copy to | No | .
