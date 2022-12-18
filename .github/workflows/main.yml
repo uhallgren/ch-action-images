@@ -19,15 +19,9 @@ jobs:
       with:
         user: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local: 'sdk'
-        remote: 'Telia_Internal/sagemcom/sdk/SDK_F5370E_2022'
+        local: sdk
+        remote: Telia_Internal/sagemcom/sdk/SDK_F5370E_2022
         
-    - name: Check stuff
-      run: |
-        pwd
-        ls -l
-        ls -l sdk 
-
     - name: Build SDK 
       uses: ./.github/actions/sagemcom/f5370e/build-sdk
       with:

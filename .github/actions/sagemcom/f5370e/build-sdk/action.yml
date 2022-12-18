@@ -1,24 +1,24 @@
-name: 'build-sdk'
-author: 'Ulf Hallgren <ulf.hallgren@teliacompany.com>'
-description: 'Builds Sagemcom SDK'
+name: build-sdk
+author: Ulf Hallgren <ulf.hallgren@teliacompany.com>
+description: Builds Sagemcom SDK
 inputs:
   user:
-    sdk_version: 'SDK Version'
+    sdk_version: SDK Version
     required: true
 
   sdk_tar:
-    description: 'The folder where the SDK tar file is stored.'
+    description: The folder where the SDK tar file is stored.
     required: true
 
   compiled_sdk_tar:
-    description: 'The folder where the compiled SDK is stored.'
-    default: 'compiled_sdk'
+    description: The folder where the compiled SDK is stored.
+    default: compiled_sdk
     required: false
 
 outputs:
   compiled_sdk_name:
-    description: 'The name of the compiled sdk tar file'
+    description: The name of the compiled sdk tar file
 
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: docker
+  image: Dockerfile

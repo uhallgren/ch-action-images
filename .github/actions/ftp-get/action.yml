@@ -1,24 +1,21 @@
-name: 'ftp-get'
-author: 'Ulf Hallgren <ulf.hallgren@teliacompany.com>'
-description: 'FTP get'
+name: ftp-get
+author: Ulf Hallgren <ulf.hallgren@teliacompany.com>
+description: FTP get
 inputs:
   user:
-    description: 'FTP user'
+    description: FTP user
     required: true
   password:
-    description: 'FTP password'
+    description: FTP password
     required: true
   local:
-    description: 'Local directory'
+    description: Local directory
     required: false
-    default: '.'
+    default: .
   remote:
-    description: 'Remote directory'
+    description: Remote directory
     required: false
-    default: '.'
+    default: .
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-branding:
-  color: 'purple'
-  icon: 'download-cloud'
+  using: docker
+  image: Dockerfile
