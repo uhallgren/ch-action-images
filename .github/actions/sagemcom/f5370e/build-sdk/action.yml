@@ -2,7 +2,6 @@ name: build-sdk
 author: Ulf Hallgren <ulf.hallgren@teliacompany.com>
 description: Builds Sagemcom SDK
 inputs:
-  user:
     sdk_version: SDK Version
     required: true
 
