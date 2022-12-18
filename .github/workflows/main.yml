@@ -1,0 +1,22 @@
+name: Build images for Github actions
+
+on:
+  push:
+    branches: main
+
+jobs:
+  build_sagem_image:
+    name: Builds sagem docker image
+    runs-on: ubuntu-lates
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Fetch SDK 
+      uses: actions/ftp_get
+      with:
+        user: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local: "sdk"
+        remote: "Telia_Internal/sagemcom/sdk/SDK_F5370E_2022"
+        
