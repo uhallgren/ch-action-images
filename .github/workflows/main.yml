@@ -9,7 +9,8 @@ jobs:
   build_sagem_image:
     name: Builds sagem docker image
     
-    runs-on: ubuntu-latest
+#    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - name: Checkout out the repo
       uses: actions/checkout@v3
