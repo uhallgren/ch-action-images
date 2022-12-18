@@ -14,6 +14,3 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-branding:
-  color: 'purple'
-  icon: 'download-cloud'

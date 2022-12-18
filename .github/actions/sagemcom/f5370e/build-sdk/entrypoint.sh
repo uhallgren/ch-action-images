@@ -10,7 +10,7 @@ set -o pipefail
 set -o nounset
 set -o xtrace
 
-if [ ! -z "$VERSION" ]; then
+if [ ! -z "$INPUT_VERSION" ]; then
     VERSION="_${INPUT_VERSION}"
 fi
 
