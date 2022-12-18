@@ -17,12 +17,12 @@ jobs:
       with:
         user: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local: "./sdk"
+        local: "sdk"
         remote: "Telia_Internal/sagemcom/sdk/SDK_F5370E_2022"
         
-    - name: ls
+    - name: Create docker image build-sdk
       run: |
-        pwd
-        ls -l
-        ls -l sdk
-        
+        cd docker/sagemcom/f5370e
+        docker build . --tag build-sdk
+
+
