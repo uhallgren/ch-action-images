@@ -2,8 +2,9 @@ name: build-sdk
 author: Ulf Hallgren <ulf.hallgren@teliacompany.com>
 description: Builds Sagemcom SDK
 inputs:
-  sdk_version: SDK Version
-  required: true
+  sdk_version:
+    description: SDK Version
+    required: true
 
   sdk_tar:
     description: The folder where the SDK tar file is stored.
