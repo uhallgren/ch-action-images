@@ -22,7 +22,7 @@ jobs:
         
     - name: Create docker image build-sdk
       run: |
-        cd docker/sagemcom/f5370e
+        cd docker/sagemcom/f5370e/build-sdk
         docker build . --tag build-sdk
 
 
