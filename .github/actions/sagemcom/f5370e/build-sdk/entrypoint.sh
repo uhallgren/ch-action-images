@@ -49,7 +49,7 @@ tar cfz ${COMPILED_SDK_TAR}/${INPUT_SDK_VERSION}_compiled.tgz *
 echo "Output data"
 pwd 
 ls -l
-ls -l ${INPUT_SDK_TAR}
+ls -l ${SDK_TAR}
 ls -l ${WORKDIR}
 ls -l ${COMPILED_SDK_TAR}
 
