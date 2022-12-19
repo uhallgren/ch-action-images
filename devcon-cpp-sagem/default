@@ -1,0 +1,21 @@
+
+[binaries]
+ld = 'arm-scos-linux-gnueabi-ld'
+c = 'arm-scos-linux-gnueabi-gcc'
+ar = 'arm-scos-linux-gnueabi-ar'
+as = 'arm-scos-linux-gnueabi-as'
+cpp = 'arm-scos-linux-gnueabi-g++'
+strip = 'arm-scos-linux-gnueabi-strip'
+pkgconfig = '/usr/bin/pkg-config'
+
+[properties]
+sys_root = '/usr/local/sdk/precompiled_toolchain/gcc-v5.5-2019.03.2/arm-scos-linux-gnueabi/arm-scos-linux-gnueabi/sysroot'
+cpp_link_args = '-static-libstdc++'
+
+[host_machine]
+system = 'linux'
+cpu_family = 'arm'
+cpu = 'arm'
+endian = 'little'
+
+[built-in options]
