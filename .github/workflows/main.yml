@@ -88,6 +88,7 @@ jobs:
   build-dev-con-cpp-sagem:
     name: Build Dev Container cpp sagem image
     runs-on: ubuntu-latest
+    needs: [build_sagem_image]
 
     steps:
       - uses: actions/cache@v3
