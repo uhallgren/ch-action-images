@@ -68,6 +68,7 @@ jobs:
           
       - name: Fake Build SDK
         run: |
+          mkdir -p compiled_sdk
           echo "This is not the sdk" >> compiled_sdk/fake.txt
 
       # - name: Build SDK 
@@ -101,6 +102,5 @@ jobs:
 
       - name: Check cached file
         run: | 
-          mkdir -p compiled_sdk
           echo "Cached data"
           cat compiled_sdk/fake.txt
