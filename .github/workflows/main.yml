@@ -50,11 +50,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/cache@v3
-        with:
-          path: ./compiled_sdk 
-          key: ${{ runner.os }}-compiled_sdk_key
-
       - name: Checkout out the repo
         uses: actions/checkout@v3
 
@@ -81,13 +76,13 @@ jobs:
       #     sdk_tar: sdk
       #     compiled_sdk_tar: compiled_sdk
 
-      # - name: Store SDK 
-      #   uses: ./.github/actions/ftp-put
-      #   with:
-      #     user: ${{ secrets.FTP_USER }}
-      #     password: ${{ secrets.FTP_PASSWORD }}
-      #     local: compiled_sdk
-      #     remote: compiled_sdk
+      - name: Store SDK 
+        uses: ./.github/actions/ftp-put
+        with:
+          user: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local: compiled_sdk
+          remote: compiled_sdk
 
   build-dev-con-cpp-sagem:
     name: Build Dev Container cpp sagem image
@@ -95,13 +90,16 @@ jobs:
     needs: [build_sagem_image]
 
     steps:
-      - uses: actions/cache@v3
-        with:
-          path: ./compiled_sdk 
-          key: ${{ runner.os }}-compiled_sdk_key
-
       - name: Checkout out the repo
         uses: actions/checkout@v3
+
+      - name: Fetch compiled SDK
+        uses: ./.github/actions/ftp-get
+        with:
+          user: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local: compiled_sdk
+          remote: compiled_sdk
 
       - name: Check cached file
         run: | 
