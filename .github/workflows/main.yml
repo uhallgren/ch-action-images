@@ -1,13 +1,51 @@
 name: Build images for Github actions
 
+# on:
+#   release:
+#     types: [published]
+
 on:
-  push:
-    branches: main
+ push:
+   branches: main
 
 jobs:
+  build-dev-con-cpp:
+    name: Build Dev Container cpp image
+    runs-on: ubuntu-latest
 
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: connectedhome/hc-devcon-cpp
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: ./devcon-cpp
+          platforms: linux/amd64,linux/arm64
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+        
   build_sagem_image:
-    name: Builds sagem docker image  
+    name: Build sagem SDK 
     runs-on: ubuntu-latest
 
     steps:
@@ -22,20 +60,20 @@ jobs:
           local: sdk
           remote: Telia_Internal/sagemcom/sdk/SDK_F5370E_2022
           
-      - name: Build SDK 
-        uses: ./.github/actions/sagemcom/f5370e/build-sdk
-        with:
-          sdk_version: SG4T1E100008S
-          sdk_tar: sdk
-          compiled_sdk_tar: compiled_sdk
+      # - name: Build SDK 
+      #   uses: ./.github/actions/sagemcom/f5370e/build-sdk
+      #   with:
+      #     sdk_version: SG4T1E100008S
+      #     sdk_tar: sdk
+      #     compiled_sdk_tar: compiled_sdk
 
-      - name: Store SDK 
-        uses: ./.github/actions/ftp-put
-        with:
-          user: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local: compiled_sdk
-          remote: compiled_sdk
+      # - name: Store SDK 
+      #   uses: ./.github/actions/ftp-put
+      #   with:
+      #     user: ${{ secrets.FTP_USER }}
+      #     password: ${{ secrets.FTP_PASSWORD }}
+      #     local: compiled_sdk
+      #     remote: compiled_sdk
 
 
 
