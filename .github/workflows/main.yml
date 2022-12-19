@@ -101,5 +101,6 @@ jobs:
 
       - name: Check cached file
         run: | 
+          mkdir -p compiled_sdk
           echo "Cached data"
           cat compiled_sdk/fake.txt
