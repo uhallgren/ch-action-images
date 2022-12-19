@@ -50,6 +50,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/cache@v3
+        with:
+          path: compiled_sdk 
+          key: compiled_sdk_key
+
       - name: Checkout out the repo
         uses: actions/checkout@v3
 
@@ -61,6 +66,10 @@ jobs:
           local: sdk
           remote: Telia_Internal/sagemcom/sdk/SDK_F5370E_2022
           
+      - name: Fake Build SDK
+        run: |
+          echo "This is not the sdk" >> compiled_sdk/fake.txt
+
       # - name: Build SDK 
       #   uses: ./.github/actions/sagemcom/f5370e/build-sdk
       #   with:
@@ -76,5 +85,20 @@ jobs:
       #     local: compiled_sdk
       #     remote: compiled_sdk
 
+  build-dev-con-cpp-sagem:
+    name: Build Dev Container cpp sagem image
+    runs-on: ubuntu-latest
 
+    steps:
+      - uses: actions/cache@v3
+        with:
+          path: compiled_sdk 
+          key: compiled_sdk_key
 
+      - name: Checkout out the repo
+        uses: actions/checkout@v3
+
+      - name: Check cached file
+        run: | 
+          echo "Cached data"
+          cat compiled_sdk/fake.txt
