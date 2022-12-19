@@ -33,13 +33,13 @@ jobs:
         run: |
           mkdir -p compiled_sdk_tar
           echo "This is a test " > foo.txt
-          
+
       - name: Store SDK 
         uses: ./.github/actions/ftp-put
         with:
           user: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local: compiled_sdk
+          local: compiled_sdk_tar
           remote: compiled_sdk
 
 
