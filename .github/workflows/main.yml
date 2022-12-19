@@ -32,7 +32,7 @@ jobs:
       - name: Fake Build SDK
         run: |
           mkdir -p compiled_sdk_tar
-          echo "This is a test " > foo.txt
+          echo "This is a test " > ./compiled_sdk_tar/foo.txt
 
       - name: Store SDK 
         uses: ./.github/actions/ftp-put
