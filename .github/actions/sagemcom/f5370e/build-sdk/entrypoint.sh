@@ -38,13 +38,6 @@ mv ${WORKDIR}/staging_dir/target-sagemcom*     ${WORKDIR}/staging_dir/target
 mkdir -p ${COMPILED_SDK_TAR}
 cd ${WORKDIR}
 
-echo "Before tar"
-pwd 
-ls -l
-ls -l ${SDK_TAR}
-ls -l ${WORKDIR}
-ls -l ${COMPILED_SDK_TAR}
-tar cfz ${COMPILED_SDK_TAR}/${INPUT_SDK_VERSION}_compiled.tgz *
 
 echo "Output data"
 pwd 
