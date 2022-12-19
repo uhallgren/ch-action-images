@@ -34,7 +34,7 @@ jobs:
         with:
           user: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local: compiled_sdk_tar
+          local: compiled_sdk
           remote: compiled_sdk
 
 
