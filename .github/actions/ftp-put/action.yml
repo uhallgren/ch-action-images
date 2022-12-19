@@ -1,0 +1,21 @@
+name: ftp-get
+author: Ulf Hallgren <ulf.hallgren@teliacompany.com>
+description: FTP get
+inputs:
+  user:
+    description: FTP user
+    required: true
+  password:
+    description: FTP password
+    required: true
+  local:
+    description: Local directory
+    required: false
+    default: .
+  remote:
+    description: Remote directory
+    required: false
+    default: .
+runs:
+  using: docker
+  image: Dockerfile
