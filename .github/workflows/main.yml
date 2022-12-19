@@ -52,7 +52,7 @@ jobs:
     steps:
       - uses: actions/cache@v3
         with:
-          path: compiled_sdk 
+          path: ./compiled_sdk 
           key: compiled_sdk_key
 
       - name: Checkout out the repo
@@ -68,8 +68,11 @@ jobs:
           
       - name: Fake Build SDK
         run: |
-          mkdir -p compiled_sdk
-          echo "This is not the sdk" >> compiled_sdk/fake.txt
+          mkdir -p ./compiled_sdk
+          echo "This is not the sdk" >> ./compiled_sdk/fake.txt
+          pwd
+          ls -l 
+          ls -l ./compiled_sdk
 
       # - name: Build SDK 
       #   uses: ./.github/actions/sagemcom/f5370e/build-sdk
@@ -94,7 +97,7 @@ jobs:
     steps:
       - uses: actions/cache@v3
         with:
-          path: compiled_sdk 
+          path: ./compiled_sdk 
           key: compiled_sdk_key
 
       - name: Checkout out the repo
@@ -102,5 +105,8 @@ jobs:
 
       - name: Check cached file
         run: | 
+          pwd
+          ls -l
+          ls -l ./compiled_sdk
           echo "Cached data"
-          cat compiled_sdk/fake.txt
+          cat ./compiled_sdk/fake.txt
