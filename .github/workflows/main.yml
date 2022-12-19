@@ -10,6 +10,7 @@ on:
 
 jobs:
   build-dev-con-cpp:
+    if: false
     name: Build Dev Container cpp image
     runs-on: ubuntu-latest
 
