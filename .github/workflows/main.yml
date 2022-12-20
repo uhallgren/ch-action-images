@@ -84,7 +84,9 @@ jobs:
   build-dev-con-cpp-sagem:
     name: Build Dev Con cpp sagem
     runs-on: ubuntu-latest
-    needs: [build_sagem_sdk,build-dev-con-cpp]
+    needs: 
+      - build_sagem_sdk
+      - build-dev-con-cpp
 
     steps:
       - name: Checkout out the repo
