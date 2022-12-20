@@ -79,7 +79,7 @@ jobs:
           user: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           local: compiled_sdk
-          remote: gh_actions/sagemcom/f5370/sdk/SDK_F5370E_2022
+          remote: gh_actions/sagemcom/f5370e/sdk/SDK_F5370E_2022
 
   build-dev-con-cpp-sagem:
     name: Build Dev Con cpp sagem
@@ -98,7 +98,7 @@ jobs:
           user: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           local: devcon-cpp-sagem
-          remote: gh_actions/sagemcom/f5370/sdk/SDK_F5370E_2022
+          remote: gh_actions/sagemcom/f5370e/sdk/SDK_F5370E_2022
 
       - name: Docker meta
         id: meta
