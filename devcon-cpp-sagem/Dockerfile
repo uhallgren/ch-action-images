@@ -1,5 +1,5 @@
 
-FROM connectedhome/hc-devcon-cpp:main 
+FROM connectedhome/hc-devcon-cpp:latest 
 
 # Extract the compiled SDK
 COPY SG4T1E100008S_compiled.tgz /

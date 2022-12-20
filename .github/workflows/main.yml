@@ -8,14 +8,8 @@ on:
     tags:
       - 'v*'
 
-
-# on:
-#  push:
-#    branches: main
-
 jobs:
   build-dev-con-cpp:
-    if: false
     name: Build Dev Con cpp
     runs-on: ubuntu-latest
 
@@ -50,7 +44,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
         
-  build_sagem_image:
+  build_sagem_sdk:
     name: Build sagem SDK 
     runs-on: ubuntu-latest
 
@@ -59,12 +53,12 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Fetch SDK 
-        uses: ./.github/actions/ftp-get
+        uses: .github/actions/ftp-get
         with:
           user: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           local: sdk
-          remote: Telia_Internal/sagemcom/sdk/SDK_F5370E_2022
+          remote: gh_actions/sagemcom/f5370/sdk/SDK_F5370E_2022
           
       - name: Docker meta
         id: meta
@@ -72,21 +66,12 @@ jobs:
         with:
           images: connectedhome/hc-devcon-cpp
 
-      - name: Fake Build SDK
-        run: |
-          mkdir -p ./compiled_sdk
-          echo "This is not the sdk" >> ./compiled_sdk/fake.txt
-          echo "Tags ${{ steps.meta.outputs.tags }}"
-          echo "Labels ${{ steps.meta.outputs.labels }}"
-          ls -l 
-          ls -l ./compiled_sdk
-
-      # - name: Build SDK 
-      #   uses: ./.github/actions/sagemcom/f5370e/build-sdk
-      #   with:
-      #     sdk_version: SG4T1E100008S
-      #     sdk_tar: sdk
-      #     compiled_sdk_tar: compiled_sdk
+      - name: Build SDK 
+        uses: .github/actions/sagemcom/f5370e/build-sdk
+        with:
+          sdk_version: SG4T1E100008S
+          sdk_tar: sdk
+          compiled_sdk_tar: compiled_sdk
 
       - name: Store SDK 
         uses: ./.github/actions/ftp-put
@@ -94,24 +79,24 @@ jobs:
           user: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           local: compiled_sdk
-          remote: compiled_sdk
+          remote: gh_actions/sagemcom/f5370/sdk/SDK_F5370E_2022
 
   build-dev-con-cpp-sagem:
     name: Build Dev Con cpp sagem
     runs-on: ubuntu-latest
-    needs: [build_sagem_image]
+    needs: [build_sagem_sdk,build-dev-con-cpp]
 
     steps:
       - name: Checkout out the repo
         uses: actions/checkout@v3
 
       - name: Fetch compiled SDK
-        uses: ./.github/actions/ftp-get
+        uses: .github/actions/ftp-get
         with:
           user: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           local: devcon-cpp-sagem
-          remote: compiled_sdk
+          remote: gh_actions/sagemcom/f5370/sdk/SDK_F5370E_2022
 
       - name: Docker meta
         id: meta
