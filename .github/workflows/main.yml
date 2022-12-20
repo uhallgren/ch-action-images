@@ -1,8 +1,13 @@
 name: Build images for Github actions
 
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
+  push:
+    branches:
+      - 'master'
+    tags:
+      - 'v*'
+
 
 # on:
 #  push:
@@ -61,11 +66,18 @@ jobs:
           local: sdk
           remote: Telia_Internal/sagemcom/sdk/SDK_F5370E_2022
           
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: connectedhome/hc-devcon-cpp
+
       - name: Fake Build SDK
         run: |
           mkdir -p ./compiled_sdk
           echo "This is not the sdk" >> ./compiled_sdk/fake.txt
-          pwd
+          echo "Tags ${{ steps.meta.outputs.tags }}"
+          echo "Labels ${{ steps.meta.outputs.labels }}"
           ls -l 
           ls -l ./compiled_sdk
 
