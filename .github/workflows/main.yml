@@ -11,7 +11,8 @@ on:
 jobs:
   build-dev-con-cpp:
     name: Build Dev Con cpp
-    runs-on: ubuntu-latest
+    #runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Check out the repo
@@ -46,7 +47,8 @@ jobs:
         
   build_sagem_sdk:
     name: Build sagem SDK 
-    runs-on: ubuntu-latest
+    #runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout out the repo
@@ -83,7 +85,8 @@ jobs:
 
   build-dev-con-cpp-sagem:
     name: Build Dev Con cpp sagem
-    runs-on: ubuntu-latest
+    #runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: 
       - build_sagem_sdk
       - build-dev-con-cpp
